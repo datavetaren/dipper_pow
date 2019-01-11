@@ -51,4 +51,7 @@ Then in a browser you can type the URL (make sure you're in dipper_pow/ root dir
 http://localhost:8080/render.html?nonce=73
 ```
 
+![Running server](doc/dipper_server.png?raw=true "Running server")
+
 You can move the orientation of the camera with keys A, Z, I, J, K and L.
+
