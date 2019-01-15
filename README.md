@@ -7,10 +7,12 @@ algebra and computer graphics designed to search for "The Big Dipper"
 Although it is hard to construct proofs for finding them, it takes
 rather limited resources to verify a given proof.
 
-## Still not officially published!
+## Theory
 
-Although you may have found this, but this is still not officially
-published. I'm still polishing the paper.
+The paper on this algorithm can be found here:
+
+[http://github.com/datavetaren/dipper_pow/doc/dipper_pow.pdf](doc/dipper_pow.pdf)
+
 
 ## Compile the code
 
