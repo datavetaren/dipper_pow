@@ -130,7 +130,7 @@ to the $key$ message.
 
 The first step is to compute a star cluster that is uniquely generated
 via key (or seed.) Each star is expressed in Cartesian coordinates
-(x,y,z) constrained into finite region of space. We'll define the
+(x,y,z) constrained in a finite region of space. We'll define the
 position of each star as:
 
 \begin{eqnarray}
@@ -159,11 +159,11 @@ representation is IEEE 754 (which at most fits 64 bits.) Thus, the
 combination of hardware vendor and/or version of your compiler, its
 register allocation and spilling strategy may affect the outcome of
 the end result. It's in fact impossible to get 100\% equal behavior on
-all platforms. Therefore, you should in general never, ever, use the
-equality operator on floating point numbers.
+all platforms. Therefore, you should in general never use the equality
+operator on floating point numbers.
 
 To overcome this floating point deficiency, all computations that are
-part of the consensus computation, verifies everything via either a
+part of the consensus computation verify everything via either a
 custom fixed point representation or a custom floating point
 representation. As a miner you are free to use hardware floating point
 for your calculations, but to verify your solution you need to use the
@@ -228,9 +228,9 @@ The field of vision is captured by the volume of a pyramid (see Figure
 \ref{fig:Looking for Big Dipper}.) The orientation of the camera can
 be described by some vector algebra. If the position of the camera is
 $\vect{C}=(0,0,0)$ and the target point is $\vect{P}=(P_x,P_y,P_z)$ we
-can compute the direction vector as $\vect{D}=\vect{P}-\vect{C}=\vect{P}$. If
-we assume the existance of a proxy up vector (0,0,1) then the plane
-orientation of the pyramid is:
+can compute the direction vector as
+$\vect{D}=\vect{P}-\vect{C}=\vect{P}$. If we assume the existance of a
+proxy up vector (0,0,1) then the plane orientation of the pyramid is:
 
 \begin{eqnarray}
 	 dir_x & = & \vect{D}_{norm} \times (0,0,1) \\
@@ -254,10 +254,9 @@ approximately be projected regardless of chosen target.
 
 Let's make the volume constant to be $V = 32$ (sub cubes) then we'll
 approximately see $S_V = 8 \cdot 32 = 256$ stars. The height $h$ of
-the pyramid is $\norm{\vect{D}}$, recall that
-$\vect{D}=\vect{P}$ and the using the formula of the volume
-of a pyramid we can compute the volume base length as: $l =
-\sqrt{\frac{32 \cdot 3}{h}}$.
+the pyramid is $\norm{\vect{D}}$, recall that $\vect{D}=\vect{P}$ and
+the using the formula of the volume of a pyramid we can compute the
+volume base length as: $l = \sqrt{\frac{32 \cdot 3}{h}}$.
 
 By sorting the stars into sub cubes, we can quickly approximate the
 sub cubes that need to be considered, basically moving along the
@@ -277,9 +276,9 @@ $\norm{\vect{S}} < \norm{\vect{D}}$.
 \section{The Detector}
 
 Once we projected all the stars on the screen the next step is to make
-the detector that finds "The Big Dipper." In the previous section we've
-computed the projection of all stars on the screen, let's denote those
-as the set $\Sigma$.
+the detector that finds "The Big Dipper." In the previous section
+we've computed the projection of all stars on the screen, let's denote
+those as the set $\Sigma$.
 
 The algorithm is relatively na\"ive. For every pair of stars
 $(s_i,s_j) \in \Sigma$ we assume it matches the first two stars in the
@@ -288,9 +287,9 @@ that reorients the "Big Dipper" into this position. Then we look for
 stars within the remaining spots (by using a template of the "Big
 Dipper" and apply the rotation \& scaling matrix.) If we can find all
 the stars of "Big Dipper" within a specified tolerance, then we're
-done. Let's define delta of the two stars as $ds_{ij} = s_j-s_i$ and the
-delta of the two template stars $dt^{12} = t_2-t_1$, then rotation and
-scaling matrix becomes:
+done. Let's define delta of the two stars as $ds_{ij} = s_j-s_i$ and
+the delta of the two template stars $dt^{12} = t_2-t_1$, then rotation
+and scaling matrix becomes:
 
 \begin{eqnarray}
 R & = & \frac{1}{\norm{dt^{12}}} \begin{bmatrix}
@@ -346,9 +345,8 @@ would defeat its purpose otherwise.
 \label{sec:Verification}
 
 For each proof round, it can be quickly verified by 9 (32-bit)
-integers. 7 for the identification numbers for the stars that
-form the constelltation ("Big Dipper".) The first two integers
-are:
+integers. 7 for the identification numbers for the stars that form the
+constelltation ("Big Dipper".) The first two integers are:
 
 \begin{enumerate}
 
@@ -358,7 +356,7 @@ are:
 \end{enumerate}
 
 One may ask why the first integer is needed. Imagine that the miner
-only choose to compute all stars except for all stars where $X <
+only chooses to compute for all stars except for those where $X <
 0$. Then (as stars are uniformly distributed) only half the stars need
 to be stored in memory, and the frequency of detecting the "Big
 Dipper" will be reduced by 50\% as well. So in essence you can trade
@@ -379,8 +377,8 @@ than 10x more computing power. We can also complement the proof row
 with the expection value of finding the "Big Dipper."  Empericial
 studies have shown that it's very rare to get more than $20,000$
 iterations for one proof row. So if the nonce is required to be less
-than $20,000$, then it becomes almost impossible to come up with a proof
-where one have removed half of the stars uniformly.
+than $20,000$, then it becomes almost impossible to come up with a
+proof where one have removed half of the stars uniformly.
 
 With these extra percautions, only 8 stars have to be rendered for
 verífying each proof row. And if we use 16 proof rows, a total of
@@ -456,7 +454,9 @@ P_z & = & normalize(siphash("hello42", 2)) \\
 \end{eqnarray}
 
 Thus, if star coordinates are defined by the vector $S = (-0.0430396,
--0.0530827, -0.0454055)$ and the camera target point is $P = (-0.248567, -0.308779, -0.262270)$, the distances from the point of origin $(0,0,0)$ are:
+-0.0530827, -0.0454055)$ and the camera target point is $P =
+(-0.248567, -0.308779, -0.262270)$, the distances from the point of
+origin $(0,0,0)$ are:
 
 \begin{eqnarray}
  \norm{\vect{S}} & = & \sqrt{0.0430396^2+0.0538027^2+0.0454055^2} = 0.0825154 \\
@@ -468,7 +468,8 @@ The length at the "base of the pyramid" is $\sqrt{\frac{V \cdot
 $V=\frac{32}{256^3}$ where $256 = 2^n$ with $n=8$ (the super
 difficulty.)
 
-From the camera target point we compute the direction vectors of the plane (of the lens):
+From the camera target point we compute the direction vectors of the
+plane (of the lens):
 
 \begin{eqnarray}
 \vect{dir_{up}} & = & (0,0,1) \\
@@ -512,9 +513,9 @@ P_z & = & normalize(siphash("hello42", 2^{32} \cdot 3661 + 2)) \\
 \end{eqnarray}
 
 Carrying out the computations for the other stars give the 3D
-coordinates and the corresponding 2D projections and the screen
-coordinates are the normalized coordinates $-0.5 \leq x < 0.5$ mapped
-to $0 \leq x < 4096$. \\
+coordinates and the corresponding 2D projections. I've also included
+the actual screen coordinates which are the normalized coordinates
+$-0.5 \leq x < 0.5$ mapped to $0 \leq x < 4096$. \\
 
 {
 \tiny{
@@ -558,7 +559,8 @@ the two vectors $(185,116)$ and $(-500,-1122) = (x_1-x_0,y_1-y_0) =
 pure integers (we avoid all custom fixed/floating point.)
 
 Taking the dot product of these two vectors will give us the X axis of
-the base vector. The Y axis is obtained by rotating the vector 90 degrees counter clockwise $(x,y) \rightarrow (y,-x)$:
+the base vector. The Y axis is obtained by rotating the vector 90
+degrees counter clockwise $(x,y) \rightarrow (y,-x)$:
 
 \begin{eqnarray}
 R & = & \frac{1}{\sqrt{185^2+116^2}} \left( \begin{array}{cc}
@@ -594,15 +596,15 @@ translate them to the coordinate system of interest using:
 
 The tolerance of the template is set to 8 pixels.  This tolerance is
 translated as well, so we get tolerated error $8 \cdot
-\frac{\sqrt{500^2+1122^2}}{\sqrt{185^2+116^2}} = 45$ pixels.
-As seen, all the errors shown above are less than 45 pixels.
+\frac{\sqrt{500^2+1122^2}}{\sqrt{185^2+116^2}} = 45$ pixels.  As seen,
+all the errors shown above are less than 45 pixels.
 
 This was the first row of the proof. The second row will use nonce
 offset 3661 + 1 = 3662. The third row will use nonce offset
 3661 + 6475 + 2 and so on (recall that nonce offset adds
 $2^{32}\cdot(offset)$ to the nonce.)
 
-Performance of verifying a complete proof takes about 288 ${\mu}s$
+Performance of verifying a complete proof takes about 280 ${\mu}s$
 on a MacBook Pro 2.4 GHz with 8 GB 1600 MHz DDR3 RAM. And then I
 haven't really optimized the code.
 
@@ -615,8 +617,8 @@ constraint on the final solution. Let's say: $Blake2(solution) < H <
 2^{256}$ where a descreasing $H$ will make it harder to find an
 accepted solution.  In essence, this is the strategy used in bitcoin
 \cite{nakamoto2009bitcoin} but here used as an additional constraint
-on the "Big Dipper" solution itself. (Same approach is taken in "Cuckoo
-Cycle.")
+on the "Big Dipper" solution itself. (Same approach is taken in
+"Cuckoo Cycle.")
 
 \section{Course Tuning}
 
