@@ -48,7 +48,7 @@ This will initialize a galaxy for seed 'hello42'.
 Then in a browser you can type the URL (make sure you're in dipper_pow/ root directory, i.e. the parent of src/ and bin/):
 
 ```
-http://localhost:8080/render.html?nonce=73
+http://localhost:8080/render.html?nonce=3661
 ```
 
 <img src="doc/dipper_server.png" width="400">
