@@ -2,7 +2,7 @@
 # Recurse into sub-directories and build and test
 #
 
-MODULES := dipper
+MODULES := pow
 
 yellow="\033[0;33m"
 off="\033[0m"

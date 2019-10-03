@@ -1,5 +1,5 @@
 @echo off
-SET MODULES=dipper
+SET MODULES=pow
 
 IF "%1"=="all" (
 GOTO :ALL
